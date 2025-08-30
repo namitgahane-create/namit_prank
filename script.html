@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Do You Love Me? ❤️</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background-color: #ffe6eb;
+      margin: 0;
+      padding: 0;
+      overflow: hidden; /* no scrollbars */
+      height: 100vh;
+    }
+    .container {
+      margin-top: 50px;
+      position: relative;
+      z-index: 1;
+    }
+    img {
+      width: 200px;
+      max-width: 90%;
+      margin-bottom: 20px;
+    }
+    h2 {
+      font-size: 24px;
+      color: #333;
+    }
+    p {
+      color: #666;
+    }
+    button {
+      padding: 12px 25px;
+      font-size: 18px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      box-shadow: 0px 4px 6px rgba(0,0,0,0.1);
+      transition: transform 0.2s ease;
+      position: absolute;
+    }
+    button:hover {
+      transform: scale(1.1);
+    }
+    .yes {
+      background-color: #ff4d6d;
+      color: white;
+      position: relative;
+    }
+    .no {
+      background-color: #f0f0f0;
+      color: black;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <img id="cuteImg" src="milk-and-mocha.gif" alt="cute">
+    <h2 id="question">Do you love me? 🥰</h2>
+    <p id="subtext">I am all yours ❤️</p>
+    <div>
+      <button class="yes" onclick="sayYes()">Yes</button>
+      <button class="no" id="noBtn" onclick="sayNo()">No</button>
+    </div>
+  </div>
+
+  <script>
+    const img = document.getElementById("cuteImg");
+    const question = document.getElementById("question");
+    const subtext = document.getElementById("subtext");
+    const noBtn = document.getElementById("noBtn");
+
+    // List of different gifs for each "No"
+    const noGifs = [
+      "please.gif",
+      "please-begging.gif",
+      "pokemon-pikachu.gif",
+      "nikunjaxarma.gif",
+      "please-please-yaar"
+    ];
+    let noClick = 0;
+
+    function sayYes() {
+      img.src = "miss-you-hug.gif";
+      question.innerHTML = "Yay! I love you too Namit ❤️😍";
+      subtext.innerHTML = "You made me the happiest!";
+      noBtn.style.display = "none"; // hide "No" forever
+    }
+
+    function sayNo() {
+      // Change image each time
+      img.src = noGifs[noClick % noGifs.length];
+
+      // Change text
+      question.innerHTML = "Baby man jao na! 😭 (No #" + (noClick+1) + ")";
+      subtext.innerHTML = "akhir tuza ch hou n!";
+
+      // Move "No" button to random place
+      const newTop = Math.random() * (window.innerHeight - 60);
+      const newLeft = Math.random() * (window.innerWidth - 100);
+      noBtn.style.top = newTop + "px";
+      noBtn.style.left = newLeft + "px";
+
+      noClick++;
+    }
+  </script>
+</body>
+</html>
